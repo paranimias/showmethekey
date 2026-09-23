@@ -126,19 +126,21 @@ for_window [app_id="showmethekey-gtk" title="Floating Window - Show Me The Key"]
 For Hyprland, you can use window rules to achieve the same effect. The config should be at `~/.config/hypr/hyprland.conf` (or `~/.config/hypr/hyprland.lua` since Hyprland version `0.55`) or an extension of them. 
 Example config:
 
-```
-# To get more information about a window’s class, title, XWayland status or its size, you can use `hyprctl clients`. (From Hyprland Wiki)
+**Lua (`~/.config/hypr/hyprland.lua`)**
+```lua
+-- To get more information about a window’s class, title, XWayland status or its size, you can use `hyprctl clients`. (From Hyprland Wiki)
 
-# for `~/.config/hypr/hyprland.conf`:
+hl.window_rule({ match = { class = "^(one.alynx.showmethekey)$", }, float = true, }) -- make window floating
+hl.window_rule({ match = { class = "^(one.alynx.showmethekey)$", }, float = true, pin = true, }) -- pin window (requires `float = true`)
+```
+
+**Hyprlang (`~/.config/hypr/hyprland.conf`)**
+```hyprlang
+# To get more information about a window’s class, title, XWayland status or its size, use `hyprctl clients`
 
 windowrulev2 = float,class:^(one.alynx.showmethekey)$
 windowrulev2 = float,class:^(showmethekey-gtk)$ # make window floating
 windowrulev2 = pin,class:^(showmethekey-gtk)$ # pin window
-
-# for `~/.config/hypr/hyprland.lua`:
-
-hl.window_rule({ match = { class = "^(one.alynx.showmethekey)$", }, float = true, }) # make window floating
-hl.window_rule({ match = { class = "^(one.alynx.showmethekey)$", }, float = true, pin = true, }) # pin window (requires `float = true`)
 ```
 
 ## If You are Tired of the App (Settings) Window
